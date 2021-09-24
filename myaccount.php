@@ -1,6 +1,5 @@
 <?php
 
-require("app/api.php");
 
 ?>
 <!DOCTYPE html>
@@ -9,14 +8,12 @@ require("app/api.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="myaccount.css">
-    <link rel="stylesheet" href="fontawesome-free-5.15.1-web/css/all.css">
-    <title>myaccount</title>
+    
 </head>
 
 <body>
     <center>
-        <header class="l-header">
+        <!-- <header class="l-header">
             <nav class="nav bd-grid">
                 <div class="textflex">
                     <p>Crypto</p>
@@ -60,9 +57,9 @@ require("app/api.php");
                                         class="fas fa-phone"></i>Contact
                                     Us</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- ==========NAVMAXWIDTH=========== -->
-                    <div class="navmaxwidth">
+                    <!-- <div class="navmaxwidth">
                         <nav class="nav__container">
                             <div>
                                 <!-- <a href="#" class="nav__link nav__logo">
@@ -140,10 +137,10 @@ require("app/api.php");
                                 <span class="nav__namee">CRYPTO TRADE GAIN</span>
                             </a>
                         </nav>
-                    </div>
-                </div>
+                    <!-- </div>  -->
+                <!-- </div>
             </nav>
-        </header>
+        </header> -->
 
         <h2 class="accounttext">My Account </h2>
 

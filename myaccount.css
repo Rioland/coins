@@ -1,17 +1,17 @@
-* {
+/* * {
     margin: 0px;
     padding: 0px;
     list-style: none;
     text-decoration: none;
     font-family: sans-serif;
     box-sizing: border-box
-}
+} */
 
-html {
+/* html {
     margin: 0 auto !important;
     float: none !important;
     box-sizing: border-box;
-}
+} */
 
 .body {
     background-color: #f1f1f1;

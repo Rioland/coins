@@ -3,7 +3,7 @@ require "vendor/autoload.php";
 
 use Codenixsv\CoinGeckoApi\CoinGeckoClient;
 
-$client = new CoinGeckoClient();
+$client = @new CoinGeckoClient();
 if (isset($_SESSION['currency']) and !empty($_SESSION['currency'])) {
     $currency = $_SESSION['currency'];
 
@@ -16,7 +16,7 @@ if (isset($_SESSION['currency']) and !empty($_SESSION['currency'])) {
 // $data = $client->derivatives()->getExchanges();
 // $data = $client->simple()->getPrice('0x,bitcoin', 'usd,rub');
 // $data = $client->coins()->getList();
-$data = $result = $client->coins()->getMarkets($currency);
+@$data = $result = $client->coins()->getMarkets($currency);
 $response = $client->getLastResponse();
 $headers = $response->getHeaders();
 
