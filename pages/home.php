@@ -5,26 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+ 
+  .rcorners2{
+      width: 100%;
+  }
+}
     .act {
-        height: 400px;
+        min-height: 400px;
+        height: auto;
+        
+        /* display: flex; 
+        justify-content: space-between ; 
+        flex-direction: row; */
         background: #2F2F2F;
         padding-top: 150px;
-        padding-left: 78px;
-        padding-right: 78px;
+        /* padding-left: 20px;
+        padding-right: 20px; */
+        padding-bottom: 24px;
     }
 
     .rcorners2 {
         border-radius: 15px 50px 30px 5px;
         background: white;
         padding: 20px;
+        margin: 15px;
         width: 200px;
         height: 150px;
     }
 
-    .sp1 {
-        /* margin-right: 34px; */
-
-    }
+  
 
     .camp1 {
         display: flex;
@@ -48,11 +74,11 @@
 
 <body>
 
-    <div class="act">
+    <div class="act d-flex flex-row flex-wrap justify-content-around ">
 
-        <div style="display: flex; justify-content:space-between; ">
+        <!-- <div style=" justify-content:space-between;" > -->
         <!-- 1 -->
-            <div class="rcorners2 sp1">
+            <div class="rcorners2 ">
                 <div class="camp1">
                     <div>
                         <div style="font-size:25px; font-weight:bold;" >Balance</div>
@@ -75,7 +101,7 @@
                 </div>
             </div>
             <!-- 2 -->
-            <div class="rcorners2 sp1">
+            <div class="rcorners2 ">
                 <div class="camp1">
                     <div>
                         <div style="font-size:25px; font-weight:bold;" >Balance</div>
@@ -98,7 +124,7 @@
                 </div>
             </div>
             <!-- 3 -->
-            <div class="rcorners2 sp1">
+            <div class="rcorners2 ">
                   <div class="camp1">
                     <div>
                         <div style="font-size:25px; font-weight:bold;" >Balance</div>
@@ -121,7 +147,7 @@
                 </div>
             </div>
             <!-- 4 -->
-            <div class="rcorners2 sp1">
+            <div class="rcorners2 ">
               <div class="camp1">
                     <div>
                         <div style="font-size:25px; font-weight:bold;" >Balance</div>
@@ -143,7 +169,7 @@
                     eeee
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </div>
 
