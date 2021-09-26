@@ -11,4 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['crypoid'] = $crypto;
     }
 
+// pages
+if (isset($_REQUEST['page']) and !empty($_REQUEST['page'])) {
+    $_SESSION['page'] = $_REQUEST['page'];
+    echo "ok";
+}
+
+
 }

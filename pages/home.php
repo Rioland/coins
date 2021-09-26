@@ -174,7 +174,10 @@
     </div>
 
 
+<?php
+require "./coinshow.php";
 
+?>
 </body>
 
 </html>

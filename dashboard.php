@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html>
 
@@ -5,6 +9,8 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Dashboard</title>
+     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <script type='text/javascript' src=''></script>
@@ -237,10 +243,10 @@
 
                     <div class="nav_list">
                         <!-- dashboard -->
-                        <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+                        <a id="dash" href="" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
                             <span class="nav_name">Dashboard</span> </a>
                         <!-- deposite -->
-                        <a href="#" class="nav_link">
+                        <a id="dep" href="" class="nav_link">
                             <!-- <i class='bx bx-user nav_icon'> -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-wallet" viewBox="0 0 16 16">
@@ -250,7 +256,7 @@
                             </i> <span class="nav_name">Deposit</span>
                         </a>
                         <!-- withdraw -->
-                        <a href="#" class="nav_link">
+                        <a id="with" href="" class="nav_link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-folder2" viewBox="0 0 16 16">
                                 <path
@@ -258,20 +264,20 @@
                             </svg>
                             </i> <span class="nav_name">Withdraw</span> </a>
                         <!-- Invest -->
-                        <a href="#" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a id="inv" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
                             </svg> <span class="nav_name">Invest</span> </a>
                         <!-- transaction -->
-                        <a href="#" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a id="tran" href="" class="nav_link"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
                             </svg></i> <span class="nav_name">Transaction</span>
                         </a>
                         <!-- profile -->
-                        <a href="#" class="nav_link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a id="prof" href="" class="nav_link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                 <path fill-rule="evenodd"
@@ -288,11 +294,18 @@
         </div>
         <!--Container Main start-->
         <div class="height-100 bg-light">
-            <?php
-         require "./pages/home.php";
-         require "./coinshow.php";
+         
+              <?php
+if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
+    require $_SESSION['page'];
+} else {
+    require "pages/home.php";
 
-             ?>
+}
+
+
+
+?>
         </div>
         <!--Container Main end-->
         <script type='text/javascript'
@@ -336,6 +349,129 @@
 
             // Your code to run since DOM is loaded and ready
         });
+        </script>
+          <script>
+            $(document).ready(function () {
+               var url ="app/api.php";
+                // dashboard
+                $("#dash").click(function (e) { 
+                    // alert("hi");
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/home.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            window.location.reload();
+                            // console.log(response);
+                        }
+                    });
+                    
+                    window.location.reload();
+                });
+// deposit
+
+               $("#dep").click(function (e) { 
+                    // alert("hi");
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/dep.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                             window.location.reload();  
+                            // console.log(response);
+                        }
+                    });  
+                     window.location.reload();  
+                   
+                    
+                });
+                // withdraw
+
+                 $("#with").click(function (e) { 
+                   
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/with.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            
+                            // console.log(response);
+                             window.location.reload();  
+                        }
+                    });  
+                    window.location.reload();  
+                    
+                });
+
+                // profile
+                 $("#prof").click(function (e) { 
+                    // alert("hi");
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/prof.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            
+                            // console.log(response);
+                             window.location.reload();  
+                        }
+                    });  
+                    window.location.reload();  
+                    
+                });
+                // investment
+                $("#inv").click(function (e) { 
+                    // alert("hi");
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/inv.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                             window.location.reload();  
+                            // console.log(response);
+                        }
+                    });  
+                    window.location.reload();  
+                    
+                });
+                // transaction
+                $("#tran").click(function (e) { 
+                    // alert("hi");
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        data: {
+                            page:"pages/trans.php"
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            
+                            // console.log(response);
+                             window.location.reload();  
+                        }
+                    });  
+                    window.location.reload();  
+                    
+                });
+                
+ 
+
+            });
         </script>
     </body>
 
