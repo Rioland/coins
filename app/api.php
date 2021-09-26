@@ -14,8 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // pages
 if (isset($_REQUEST['page']) and !empty($_REQUEST['page'])) {
     $_SESSION['page'] = $_REQUEST['page'];
-    echo "ok";
+    $_SESSION['title'] = $_REQUEST['title'];
+   echo json_encode(array("code" => 200, "message" => "set"));
+
 }
+
+
+
 
 
 }

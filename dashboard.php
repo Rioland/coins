@@ -1,5 +1,7 @@
 <?php
-session_start();
+require "./app/Database.php";
+$btcprice = Database::getBTCPrice("USD");
+
 
 ?>
 <!doctype html>
@@ -222,6 +224,13 @@ session_start();
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i>
             </div>
+            <label style="color: white;"  > <?php 
+               if(isset($_SESSION["title"]) and !empty($_SESSION["title"]) ){
+                  echo strtoupper($_SESSION["title"]);
+               }else{
+                  echo strtoupper("Dashboard");
+               }
+               ?>   </label>
             <!-- profile image -->
             <div class="rcorners1">
                 <label>A</label>
@@ -360,7 +369,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/home.php"
+                            page:"pages/home.php",
+                            title:"Home"
                         },
                         dataType: "json",
                         success: function (response) {
@@ -379,7 +389,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/dep.php"
+                            page:"pages/dep.php",
+                            title:"deposit"
                         },
                         dataType: "json",
                         success: function (response) {
@@ -399,7 +410,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/with.php"
+                            page:"pages/with.php",
+                            title:"withdraw"
                         },
                         dataType: "json",
                         success: function (response) {
@@ -419,7 +431,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/prof.php"
+                            page:"pages/prof.php",
+                            title:"profile"
                         },
                         dataType: "json",
                         success: function (response) {
@@ -438,7 +451,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/inv.php"
+                            page:"pages/inv.php",
+                            title:"investment"
                         },
                         dataType: "json",
                         success: function (response) {
@@ -456,7 +470,8 @@ if (isset($_SESSION['page']) and !empty($_SESSION['page'])) {
                         type: "post",
                         url: url,
                         data: {
-                            page:"pages/trans.php"
+                            page:"pages/trans.php",
+                            title:"transactions"
                         },
                         dataType: "json",
                         success: function (response) {
